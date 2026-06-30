@@ -1,0 +1,61 @@
+.mission {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+}
+
+.left {
+  background: var(--cream);
+  padding: var(--sp-12) var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--olive);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-3);
+}
+
+.body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--charcoal);
+  max-width: 420px;
+}
+
+.body p + p { margin-top: var(--sp-3); }
+
+.right {
+  background: var(--slate);
+  padding: var(--sp-12) var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pull {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ochre);
+  letter-spacing: -0.01em;
+}
+
+.pull span {
+  color: var(--cream);
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .mission { grid-template-columns: 1fr; }
+  .left, .right { padding: var(--sp-8) var(--sp-3); }
+}

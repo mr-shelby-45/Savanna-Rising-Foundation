@@ -1,0 +1,64 @@
+.team {
+  background: var(--cream);
+  padding: var(--sp-16) var(--sp-6);
+}
+
+.block + .block {
+  margin-top: var(--sp-16);
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--olive);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-8);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid rgba(28, 26, 23, 0.12);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-6);
+}
+
+.member {
+  display: flex;
+  flex-direction: column;
+}
+
+.photo {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: var(--olive);
+  opacity: 0.2;
+  margin-bottom: var(--sp-3);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--charcoal);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.role {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--olive);
+}
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .team { padding: var(--sp-12) var(--sp-3); }
+  .grid { grid-template-columns: repeat(2, 1fr); gap: var(--sp-4); }
+}

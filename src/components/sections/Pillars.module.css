@@ -1,0 +1,105 @@
+.pillars {
+  padding: var(--sp-12) var(--sp-6);
+  background: var(--cream);
+}
+
+.top { margin-bottom: var(--sp-8); }
+
+.intro {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--charcoal);
+  letter-spacing: -0.02em;
+  max-width: 600px;
+}
+
+.sport {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--charcoal);
+  padding: var(--sp-6) 0;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--olive);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-2);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 64px);
+  font-weight: 800;
+  color: var(--charcoal);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.terra { color: var(--terra); }
+
+.desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--charcoal);
+  opacity: 0.75;
+  max-width: 380px;
+  padding-top: 8px;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--terra);
+  text-decoration: none;
+  margin-top: var(--sp-3);
+  transition: gap 0.2s;
+}
+
+.link:hover { gap: 14px; }
+.link:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(28, 26, 23, 0.15);
+}
+
+.cell {
+  padding: var(--sp-6) var(--sp-6) var(--sp-6) 0;
+}
+
+.cellRight {
+  padding: var(--sp-6) 0 var(--sp-6) var(--sp-6);
+  border-left: 1px solid rgba(28, 26, 23, 0.15);
+}
+
+@media (max-width: 768px) {
+  .pillars { padding: var(--sp-8) var(--sp-3); }
+
+  .sport {
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+  }
+
+  .split { grid-template-columns: 1fr; }
+
+  .cell { padding: var(--sp-6) 0; }
+
+  .cellRight {
+    padding: var(--sp-6) 0;
+    border-left: none;
+    border-top: 1px solid rgba(28, 26, 23, 0.15);
+  }
+}
