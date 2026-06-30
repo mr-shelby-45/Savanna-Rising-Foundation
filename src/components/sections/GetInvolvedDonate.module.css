@@ -1,0 +1,212 @@
+.section {
+  background: var(--cream);
+  padding: var(--sp-16) var(--sp-6);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  gap: 0;
+  align-items: start;
+}
+
+.methodLabel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--olive);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-2);
+}
+
+.methodTitle {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 800;
+  color: var(--charcoal);
+  letter-spacing: -0.02em;
+  line-height: 1.0;
+  margin-bottom: var(--sp-4);
+}
+
+.methodDesc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--charcoal);
+  opacity: 0.7;
+  margin-bottom: var(--sp-8);
+  max-width: 400px;
+}
+
+.paybillBlock {
+  display: flex;
+  gap: var(--sp-6);
+  margin-bottom: var(--sp-8);
+  padding: var(--sp-6) 0;
+  border-top: 1px solid rgba(28, 26, 23, 0.12);
+  border-bottom: 1px solid rgba(28, 26, 23, 0.12);
+}
+
+.paybillItem { flex: 1; }
+
+.paybillLabel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--olive);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-1);
+}
+
+.paybillValue {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  color: var(--terra);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.paybillDivider {
+  width: 1px;
+  background: rgba(28, 26, 23, 0.12);
+  align-self: stretch;
+}
+
+.stepsLabel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--olive);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-3);
+}
+
+.stepsList {
+  list-style: decimal;
+  padding-left: var(--sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stepsList li {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--charcoal);
+  opacity: 0.8;
+}
+
+.stepsList strong {
+  font-weight: 500;
+  color: var(--charcoal);
+}
+
+.divider {
+  width: 1px;
+  background: rgba(28, 26, 23, 0.12);
+  align-self: stretch;
+  margin: 0 auto;
+}
+
+.amounts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+}
+
+.amountBtn {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--charcoal);
+  background: transparent;
+  border: 1px solid rgba(28, 26, 23, 0.2);
+  padding: 14px var(--sp-3);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+  text-align: left;
+}
+
+.amountBtn:hover { border-color: var(--terra); color: var(--terra); }
+
+.amountActive {
+  border-color: var(--terra);
+  background: var(--terra);
+  color: var(--cream);
+}
+
+.amountActive:hover { background: var(--terra); color: var(--cream); }
+
+.customRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: var(--sp-6);
+}
+
+.customLabel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--olive);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.customInput {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--charcoal);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(28, 26, 23, 0.3);
+  padding: var(--sp-2) 0;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+.customInput:focus { border-color: var(--terra); }
+.customInput::placeholder { color: rgba(28, 26, 23, 0.3); }
+
+.donateBtn {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--cream);
+  background: var(--terra);
+  border: none;
+  padding: 16px var(--sp-6);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background 0.2s;
+  margin-bottom: var(--sp-3);
+}
+
+.donateBtn:hover { background: #b04e2a; }
+.donateBtn:focus-visible { outline: 2px solid var(--ochre); outline-offset: 2px; }
+
+.stripeNote {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--charcoal);
+  opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+  .section { padding: var(--sp-12) var(--sp-3); }
+  .inner { grid-template-columns: 1fr; gap: var(--sp-12); }
+  .divider { width: 100%; height: 1px; margin: 0; }
+  .amounts { grid-template-columns: 1fr 1fr; }
+}

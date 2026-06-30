@@ -1,0 +1,99 @@
+.section {
+  background: var(--slate);
+  padding: var(--sp-16) var(--sp-6);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-8);
+  margin-bottom: var(--sp-12);
+  padding-bottom: var(--sp-12);
+  border-bottom: 1px solid rgba(250, 237, 205, 0.1);
+}
+
+.topLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--olive);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-2);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 800;
+  color: var(--ochre);
+  letter-spacing: -0.02em;
+  line-height: 1.0;
+}
+
+.topRight {
+  display: flex;
+  align-items: flex-end;
+}
+
+.desc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--cream);
+  opacity: 0.7;
+  max-width: 480px;
+}
+
+.programmeList { display: flex; flex-direction: column; }
+
+.programme {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-8);
+  padding: var(--sp-8) 0;
+  border-top: 1px solid rgba(250, 237, 205, 0.08);
+}
+
+.programme:last-child { border-bottom: 1px solid rgba(250, 237, 205, 0.08); }
+
+.progName {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--sp-1);
+  line-height: 1.2;
+}
+
+.progTarget {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--olive);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.progDesc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--cream);
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .section { padding: var(--sp-12) var(--sp-3); }
+  .top { grid-template-columns: 1fr; gap: var(--sp-4); }
+  .programme { grid-template-columns: 1fr; gap: var(--sp-3); }
+}
