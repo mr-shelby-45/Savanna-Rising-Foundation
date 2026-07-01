@@ -1,0 +1,92 @@
+.section {
+  background: var(--slate);
+  padding: var(--sp-16) var(--sp-6);
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--olive);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-8);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid rgba(250, 237, 205, 0.1);
+}
+
+.list { display: flex; flex-direction: column; }
+
+.post {
+  display: grid;
+  grid-template-columns: 160px 1fr 32px;
+  gap: var(--sp-6);
+  padding: var(--sp-6) 0;
+  border-bottom: 1px solid rgba(250, 237, 205, 0.08);
+  text-decoration: none;
+  align-items: start;
+  transition: border-color 0.2s;
+}
+
+.post:first-child { border-top: 1px solid rgba(250, 237, 205, 0.08); }
+.post:hover { border-color: rgba(250, 237, 205, 0.2); }
+.post:hover .arrow { color: var(--terra); transform: translateX(4px); }
+.post:focus-visible { outline: 2px solid var(--ochre); outline-offset: 2px; }
+
+.postMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.pillarTag {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--terra);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.date {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--cream);
+  opacity: 0.4;
+}
+
+.postTitle {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin-bottom: var(--sp-2);
+}
+
+.postExcerpt {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--cream);
+  opacity: 0.55;
+}
+
+.arrow {
+  font-size: 18px;
+  color: var(--cream);
+  opacity: 0.4;
+  padding-top: 4px;
+  transition: color 0.2s, transform 0.2s;
+  align-self: start;
+}
+
+@media (max-width: 768px) {
+  .section { padding: var(--sp-12) var(--sp-3); }
+  .post { grid-template-columns: 1fr 24px; gap: var(--sp-3); }
+  .postMeta { flex-direction: row; align-items: center; gap: var(--sp-3); }
+}

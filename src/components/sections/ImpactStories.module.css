@@ -1,0 +1,118 @@
+.section {
+  background: var(--cream);
+  padding: var(--sp-16) var(--sp-6);
+}
+
+.header { margin-bottom: var(--sp-12); }
+
+.label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--olive);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-2);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 700;
+  color: var(--charcoal);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+  margin-bottom: var(--sp-4);
+}
+
+.story:last-child { margin-bottom: 0; }
+
+.storyReverse { direction: rtl; }
+.storyReverse > * { direction: ltr; }
+
+.storyImg {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.imgPlaceholder {
+  position: absolute;
+  inset: 0;
+  background: var(--olive);
+  opacity: 0.3;
+}
+
+.imgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30, 47, 35, 0.6) 0%, transparent 60%);
+}
+
+.imgCaption {
+  position: absolute;
+  bottom: var(--sp-4);
+  left: var(--sp-4);
+}
+
+.imgPillar {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--terra);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.storyContent {
+  background: var(--slate);
+  padding: var(--sp-12) var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quote {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ochre);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--sp-6);
+  quotes: '\201C' '\201D';
+}
+
+.quote::before { content: open-quote; }
+.quote::after  { content: close-quote; }
+
+.storyBody {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--cream);
+  opacity: 0.7;
+  margin-bottom: var(--sp-6);
+}
+
+.attr {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--olive);
+}
+
+@media (max-width: 768px) {
+  .section { padding: var(--sp-12) var(--sp-3); }
+  .story { grid-template-columns: 1fr; direction: ltr; }
+  .storyReverse { direction: ltr; }
+  .storyImg { min-height: 260px; }
+  .storyContent { padding: var(--sp-8) var(--sp-3); }
+}
