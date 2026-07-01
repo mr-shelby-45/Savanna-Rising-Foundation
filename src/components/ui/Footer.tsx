@@ -33,7 +33,7 @@ export default function Footer() {
             <li><Link href="/get-involved#donate">Donate</Link></li>
             <li><Link href="/get-involved#volunteer">Volunteer</Link></li>
             <li><Link href="/get-involved#partner">Partner with us</Link></li>
-            <li><Link href="/get-involved#contact">Contact</Link></li>
+            <li><Link href="/contact">Contact</Link></li>
           </ul>
         </div>
       </div>
