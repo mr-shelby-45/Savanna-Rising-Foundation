@@ -3,6 +3,13 @@
 import Link from 'next/link'
 import { useState, useEffect, useCallback } from 'react'
 import styles from './HeroCarousel.module.css'
+import Image from 'next/image'
+import slide1 from '../../../public/images/carousel-1.jpg'
+import slide2 from '../../../public/images/carousel-2.jpg'
+import slide3 from '../../../public/images/carousel-3.jpg'
+import slide4 from '../../../public/images/carousel-4.jpg'
+import slide5 from '../../../public/images/carousel-5.jpg'
+
 
 const slides = [
   {
@@ -10,30 +17,35 @@ const slides = [
     label: null,
     caption: null,
     isHero: true,
+    src: slide1
   },
   {
     id: 2,
     label: 'Sport',
     caption: 'Saturday league, Nakuru',
     isHero: false,
+    src: slide2
   },
   {
     id: 3,
     label: 'Conservation',
     caption: 'Tree planting after match day',
     isHero: false,
+    src: slide3
   },
   {
     id: 4,
     label: 'Culture',
     caption: 'Heritage tournament, Nairobi',
     isHero: false,
+    src: slide4
   },
   {
     id: 5,
     label: 'Sport',
     caption: 'Girls coaching programme',
     isHero: false,
+    src: slide5
   },
 ]
 
@@ -66,7 +78,17 @@ export default function HeroCarousel() {
           className={`${styles.slide} ${i === current ? styles.active : ''}`}
           aria-hidden={i !== current}
         >
-          <div className={styles.imgPlaceholder} />
+          {slide.src ? (
+            <Image
+              src={slide.src}
+              alt={slide.caption ?? ''}
+              fill
+              style={{ objectFit: 'cover' }}
+              priority={i === 0}
+            />
+          ) : (
+            <div className={styles.imgPlaceholder} />
+          )}
           <div className={styles.overlay} />
 
           {slide.isHero ? (
