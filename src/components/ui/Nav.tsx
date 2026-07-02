@@ -62,10 +62,16 @@ export default function Nav() {
         </div>
       </nav>
 
+      <div
+        className={`${styles.backdrop} ${open ? styles.backdropOpen : ''}`}
+        onClick={() => setOpen(false)}
+      />
+
       <div className={`${styles.overlay} ${open ? styles.overlayOpen : ''}`}>
         <div className={styles.overlayTop}>
           <Link href="/" className={styles.overlayLogo} onClick={() => setOpen(false)}>
-            Savanna Rising
+            <span className={styles.overlayFullLabel}>Savanna Rising</span>
+            <span className={styles.overlayShortLabel}>Home</span>
           </Link>
           <button
             className={styles.closeBtn}
