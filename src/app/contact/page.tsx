@@ -4,8 +4,8 @@ import ContactHeader from '@/components/sections/ContactHeader'
 import ContactBlock from '@/components/sections/ContactBlock'
 
 export const metadata = {
-  title: 'Contact — Savanna Rising Foundation',
-  description: 'Get in touch with the Savanna Rising Foundation team.',
+  title: 'Contact — Mwenda Kimathi Foundation',
+  description: 'Get in touch with the Mwenda Kimathi Foundation team.',
 }
 
 export default function ContactPage() {

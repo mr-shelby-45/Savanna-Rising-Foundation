@@ -1,6 +1,7 @@
 .section {
   background: var(--slate);
-  padding: var(--sp-16) var(--sp-6);
+  padding: var(--sp-8) var(--sp-3);
+  overflow: hidden;
 }
 
 .pillarRow {
@@ -29,7 +30,7 @@
 
 .pillarName {
   font-family: var(--font-display);
-  font-size: clamp(48px, 7vw, 104px);
+  font-size: clamp(36px, 7vw, 104px);
   font-weight: 800;
   color: var(--cream);
   letter-spacing: -0.03em;

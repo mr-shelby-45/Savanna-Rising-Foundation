@@ -10,7 +10,7 @@ const details = [
 ]
 
 const social = [
-  { label: 'Instagram', href: 'https://instagram.com/savannarising' },
+  { label: 'Instagram', href: 'https://www.instagram.com/mwendakimathifoundation?igsh=MTJnamliNDB1ZXhkdA==' },
   { label: 'Twitter / X', href: 'https://twitter.com/savannarising' },
   { label: 'Facebook', href: 'https://facebook.com/savannarising' },
 ]

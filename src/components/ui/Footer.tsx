@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.top}>
         <div>
-          <p className={styles.brand}>Savanna Rising Foundation</p>
+          <p className={styles.brand}>Mwenda Kimathi Foundation</p>
           <p className={styles.tagline}>Sport is how we show up.<br />Community is what we build.</p>
         </div>
         <div>
@@ -38,7 +38,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.bottom}>
-        <p className={styles.copy}>© 2025 Savanna Rising Foundation. All rights reserved.</p>
+        <p className={styles.copy}>© 2025 Mwenda Kimathi Foundation. All rights reserved.</p>
         <p className={styles.reg}>Registered PBO · Kenya</p>
       </div>
     </footer>

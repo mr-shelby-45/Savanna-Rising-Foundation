@@ -6,7 +6,7 @@ import GetInvolvedVolunteer from '@/components/sections/GetInvolvedVolunteer'
 import GetInvolvedPartner from '@/components/sections/GetInvolvedPartner'
 
 export const metadata = {
-  title: 'Get Involved — Savanna Rising Foundation',
+  title: 'Get Involved — Mwenda Kimathi Foundation',
   description: 'Join the movement. Donate, volunteer, or partner with us.',
 }
 

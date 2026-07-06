@@ -19,8 +19,8 @@
 
 .event {
   display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: var(--sp-8);
+  grid-template-columns: 200px 1fr;
+  gap: var(--sp-6);
   padding: var(--sp-6) 0;
   border-bottom: 1px solid rgba(28, 26, 23, 0.08);
   align-items: start;
@@ -56,7 +56,7 @@
 
 .eventTitle {
   font-family: var(--font-display);
-  font-size: clamp(18px, 2vw, 24px);
+  font-size: clamp(16px, 2vw, 24px);
   font-weight: 700;
   color: var(--charcoal);
   letter-spacing: -0.01em;
@@ -64,6 +64,9 @@
 }
 
 @media (max-width: 768px) {
-  .section { padding: var(--sp-12) var(--sp-3); }
-  .event { grid-template-columns: 1fr; gap: var(--sp-2); }
+  .section { padding: var(--sp-8) var(--sp-3); }
+  .event {
+    grid-template-columns: 1fr;
+    gap: var(--sp-2);
+  }
 }

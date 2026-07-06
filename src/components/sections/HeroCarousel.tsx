@@ -93,7 +93,7 @@ export default function HeroCarousel() {
 
           {slide.isHero ? (
             <div className={styles.heroContent}>
-              <p className={styles.eyebrow}>Nairobi · Nakuru · Kenya</p>
+              <p className={styles.eyebrow}>Nairobi · Meru · Kenya</p>
               <h1 className={styles.headline}>
                 The pitch is<br />where it
                 <span className={styles.accent}> starts.</span>

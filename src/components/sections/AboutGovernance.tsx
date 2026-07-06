@@ -8,7 +8,7 @@ export default function AboutGovernance() {
           <p className={styles.label}>Registration & governance</p>
           <h2 className={styles.title}>Accountable to the communities we serve.</h2>
           <p className={styles.body}>
-            Savanna Rising Foundation is registered as a Public Benefit Organization under
+            Mwenda Kimathi Foundation is registered as a Public Benefit Organization under
             Kenya's PBO Act of 2013, regulated by the PBO Regulatory Authority. We publish
             annual reports and maintain open governance so that our partners, funders, and
             communities always know how we work and where the resources go.

@@ -7,7 +7,7 @@ import AboutTeam from '@/components/sections/AboutTeam'
 import AboutGovernance from '@/components/sections/AboutGovernance'
 
 export const metadata = {
-  title: 'About — Savanna Rising Foundation',
+  title: 'About — Mwenda Kimathi Foundation',
   description: 'Sport is how we show up. Community is what we build.',
 }
 

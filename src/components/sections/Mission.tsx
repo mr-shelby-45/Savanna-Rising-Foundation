@@ -7,7 +7,7 @@ export default function Mission() {
         <p className={styles.label}>Our foundation</p>
         <div className={styles.body}>
           <p>
-            Savanna Rising Foundation is a Kenyan Public Benefit Organization built on a
+            Mwenda Kimathi Foundation is a Kenyan Public Benefit Organization built on a
             straightforward belief: that sport, done well, changes people. We run football
             and rugby programmes across Kenya and pay close attention to what the game
             reveals in the people who play it.

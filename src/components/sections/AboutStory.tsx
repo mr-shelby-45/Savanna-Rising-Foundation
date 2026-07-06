@@ -11,7 +11,7 @@ export default function AboutStory() {
           <p className={styles.body}>
             Sport has a language that every young Kenyan speaks. It draws people in before
             they know anything is being offered — and once they are in, everything becomes
-            possible. Savanna Rising Foundation was built around that truth. We run football
+            possible. Mwenda Kimathi Foundation was built around that truth. We run football
             and rugby programmes because the game is worth running for its own sake — and
             because of what it reveals in the people who play it.
           </p>

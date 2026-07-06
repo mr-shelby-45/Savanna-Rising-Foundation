@@ -41,7 +41,7 @@ export default function Nav() {
   return (
     <>
       <nav className={`${styles.nav} ${visible ? styles.visible : styles.hidden}`}>
-        <Link href="/" className={styles.logo}>Savanna Rising</Link>
+        <Link href="/" className={styles.logo}>Mwenda Kimathi Foundation</Link>
 
         <ul className={styles.desktopLinks}>
           {links.map(l => (
@@ -70,7 +70,7 @@ export default function Nav() {
       <div className={`${styles.overlay} ${open ? styles.overlayOpen : ''}`}>
         <div className={styles.overlayTop}>
           <Link href="/" className={styles.overlayLogo} onClick={() => setOpen(false)}>
-            <span className={styles.overlayFullLabel}>Savanna Rising</span>
+            <span className={styles.overlayFullLabel}>Mwenda Kimathi Foundation</span>
             <span className={styles.overlayShortLabel}>Home</span>
           </Link>
           <button

@@ -6,7 +6,7 @@ import ImpactStories from '@/components/sections/ImpactStories'
 import ImpactReports from '@/components/sections/ImpactReports'
 
 export const metadata = {
-  title: 'Impact — Savanna Rising Foundation',
+  title: 'Impact — Mwenda Kimathi Foundation',
   description: 'The work in numbers and stories.',
 }
 

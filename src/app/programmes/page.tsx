@@ -7,7 +7,7 @@ import ProgrammesCulture from '@/components/sections/ProgrammesCulture'
 import ProgrammesSchools from '@/components/sections/ProgrammesSchools'
 
 export const metadata = {
-  title: 'Programmes — Savanna Rising Foundation',
+  title: 'Programmes — Mwenda Kimathi Foundation',
   description: 'Three pillars. One living idea.',
 }
 

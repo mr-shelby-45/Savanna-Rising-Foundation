@@ -5,7 +5,7 @@ import { schemaTypes } from './src/sanity/schemas'
 
 export default defineConfig({
   name: 'savanna-rising',
-  title: 'Savanna Rising Foundation',
+  title: 'Mwenda Kimathi Foundation',
 
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
