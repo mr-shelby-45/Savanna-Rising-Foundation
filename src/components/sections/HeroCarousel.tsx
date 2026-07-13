@@ -5,10 +5,10 @@ import { useState, useEffect, useCallback } from 'react'
 import styles from './HeroCarousel.module.css'
 import Image from 'next/image'
 import slide1 from '../../../public/images/carousel-1.jpg'
-import slide2 from '../../../public/images/carousel-2.jpg'
+import slide2 from '../../../public/images/carousel-2.jpeg'
 import slide3 from '../../../public/images/carousel-3.jpg'
 import slide4 from '../../../public/images/carousel-4.jpg'
-import slide5 from '../../../public/images/carousel-5.jpg'
+import slide5 from '../../../public/images/carousel-5.jpeg'
 
 
 const slides = [
@@ -22,7 +22,7 @@ const slides = [
   {
     id: 2,
     label: 'Sport',
-    caption: 'Saturday league, Nakuru',
+    caption: 'Rugby Match, Meru',
     isHero: false,
     src: slide2
   },

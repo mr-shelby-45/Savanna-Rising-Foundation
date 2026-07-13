@@ -27,7 +27,7 @@ export default function GetInvolvedDonate() {
             <div className={styles.paybillDivider} />
             <div className={styles.paybillItem}>
               <p className={styles.paybillLabel}>Account number</p>
-              <p className={styles.paybillValue}>Savanna Rising</p>
+              <p className={styles.paybillValue}>Mwenda Kimathi Foundation</p>
             </div>
           </div>
           <div className={styles.steps}>
@@ -36,7 +36,7 @@ export default function GetInvolvedDonate() {
               <li>Go to M-Pesa on your phone</li>
               <li>Select Lipa na M-Pesa, then Paybill</li>
               <li>Enter business number: <strong>247247</strong></li>
-              <li>Account number: <strong>Savanna Rising</strong></li>
+              <li>Account number: <strong>Mwenda Kimathi Foundation</strong></li>
               <li>Enter amount and your M-Pesa PIN</li>
             </ol>
           </div>
