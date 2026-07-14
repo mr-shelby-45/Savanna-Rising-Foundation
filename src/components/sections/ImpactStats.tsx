@@ -1,15 +1,19 @@
 import styles from './ImpactStats.module.css'
+import { sanityFetch } from '@/lib/sanity'
+import { impactStatsQuery } from '@/lib/queries'
 
-const stats = [
-  { value: '340', suffix: '+',  label: 'Youth reached through sport',          pillar: 'Sport' },
-  { value: '12',  suffix: '',   label: 'Match days with tree planting drives',  pillar: 'Conservation' },
-  { value: '6',   suffix: '',   label: 'Counties active this season',           pillar: 'Overall' },
-  { value: '2',   suffix: 'K+', label: 'Trees planted alongside the game',      pillar: 'Conservation' },
-  { value: '4',   suffix: '',   label: 'Cultural heritage events held',         pillar: 'Culture' },
-  { value: '48',  suffix: '+',  label: 'Volunteer coaches trained',             pillar: 'Sport' },
-]
+type ImpactStat = {
+  _id: string
+  label: string
+  value: string
+  pillar?: string
+}
 
-export default function ImpactStats() {
+export default async function ImpactStats() {
+  const stats = await sanityFetch<ImpactStat[]>(impactStatsQuery)
+
+  if (!stats || stats.length === 0) return null
+
   return (
     <section className={styles.section}>
       <div className={styles.header}>
@@ -17,10 +21,10 @@ export default function ImpactStats() {
         <h2 className={styles.title}>Numbers from the ground</h2>
       </div>
       <div className={styles.grid}>
-        {stats.map((s, i) => (
-          <div key={i} className={styles.stat}>
+        {stats.map((s) => (
+          <div key={s._id} className={styles.stat}>
             <p className={styles.pillar}>{s.pillar}</p>
-            <p className={styles.value}>{s.value}<span>{s.suffix}</span></p>
+            <p className={styles.value}>{s.value}</p>
             <p className={styles.statLabel}>{s.label}</p>
           </div>
         ))}

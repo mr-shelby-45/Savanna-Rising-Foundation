@@ -1,29 +1,20 @@
 import styles from './ProgrammesCulture.module.css'
+import { sanityFetch } from '@/lib/sanity'
+import { programmesQuery } from '@/lib/queries'
 
-const programmes = [
-  {
-    name: 'Heritage Match Days',
-    target: 'Players, families, elders',
-    desc: 'Tournaments where culture takes the sideline. Local music, traditional dress, indigenous games running alongside the main event. The pitch becomes a gathering space for the whole community — not just the players.',
-  },
-  {
-    name: 'Elder Engagement',
-    target: 'Community elders, youth players',
-    desc: 'We bring elders into our programmes deliberately. As referees, as storytellers, as the people who remember what the land looked like before. Their presence at the pitch is not ceremonial — it is structural.',
-  },
-  {
-    name: 'Indigenous Games',
-    target: 'Youth 8–18',
-    desc: 'Alongside football and rugby we run sessions in traditional Kenyan games — preserving the rules, the knowledge, and the joy of games that predate the ones imported from elsewhere. Play is culture. We treat it that way.',
-  },
-  {
-    name: 'Cultural Documentation',
-    target: 'Communities across programme counties',
-    desc: 'We record what we find — stories, games, traditions, languages tied to the land we work on. A growing archive built with communities, not about them, available to the people it belongs to.',
-  },
-]
+type Programme = {
+  _id: string
+  title: string
+  pillar: string
+  tagline?: string
+  description?: string
+  targetGroup?: string
+}
 
-export default function ProgrammesCulture() {
+export default async function ProgrammesCulture() {
+  const all = await sanityFetch<Programme[]>(programmesQuery)
+  const programmes = all?.filter((p) => p.pillar === 'Culture') ?? []
+
   return (
     <section className={styles.section} id="culture">
       <div className={styles.pillarRow}>
@@ -41,14 +32,14 @@ export default function ProgrammesCulture() {
         </div>
       </div>
       <div className={styles.programmeList}>
-        {programmes.map((p, i) => (
-          <div key={i} className={styles.programme}>
+        {programmes.map((p) => (
+          <div key={p._id} className={styles.programme}>
             <div className={styles.progLeft}>
-              <h3 className={styles.progName}>{p.name}</h3>
-              <p className={styles.progTarget}>{p.target}</p>
+              <h3 className={styles.progName}>{p.title}</h3>
+              <p className={styles.progTarget}>{p.targetGroup}</p>
             </div>
             <div className={styles.progRight}>
-              <p className={styles.progDesc}>{p.desc}</p>
+              <p className={styles.progDesc}>{p.description}</p>
             </div>
           </div>
         ))}

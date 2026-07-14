@@ -1,29 +1,20 @@
 import styles from './ProgrammesSport.module.css'
+import { sanityFetch } from '@/lib/sanity'
+import { programmesQuery } from '@/lib/queries'
 
-const programmes = [
-  {
-    name: 'Community Leagues',
-    target: 'Youth 14–25, mixed gender',
-    desc: 'Grassroots football and rugby leagues running across Nakuru and neighbouring counties. Structured seasons, qualified referees, and coaching support — because the game deserves to be run properly.',
-  },
-  {
-    name: 'Girls in the Game',
-    target: 'Girls 12–20',
-    desc: 'A dedicated programme creating safe, structured space for girls to play, lead, and compete. Includes mentorship, life skills sessions woven into training, and pathways to coaching certification.',
-  },
-  {
-    name: 'Coaches as Champions',
-    target: 'Volunteer coaches, all genders',
-    desc: 'Coaching is the most powerful role in any youth sport programme. We train, certify, and support volunteer coaches — equipping them to run sessions that go beyond the game.',
-  },
-  {
-    name: 'Tournament Series',
-    target: 'All age groups',
-    desc: 'Seasonal tournaments that bring multiple communities onto one pitch. Every tournament integrates a conservation drive and a cultural showcase — sport as the gathering, the rest as what grows from it.',
-  },
-]
+type Programme = {
+  _id: string
+  title: string
+  pillar: string
+  tagline?: string
+  description?: string
+  targetGroup?: string
+}
 
-export default function ProgrammesSport() {
+export default async function ProgrammesSport() {
+  const all = await sanityFetch<Programme[]>(programmesQuery)
+  const programmes = all?.filter((p) => p.pillar === 'Sport') ?? []
+
   return (
     <section className={styles.section} id="sport">
       <div className={styles.pillarRow}>
@@ -41,14 +32,14 @@ export default function ProgrammesSport() {
         </div>
       </div>
       <div className={styles.programmeList}>
-        {programmes.map((p, i) => (
-          <div key={i} className={styles.programme}>
+        {programmes.map((p) => (
+          <div key={p._id} className={styles.programme}>
             <div className={styles.progLeft}>
-              <h3 className={styles.progName}>{p.name}</h3>
-              <p className={styles.progTarget}>{p.target}</p>
+              <h3 className={styles.progName}>{p.title}</h3>
+              <p className={styles.progTarget}>{p.targetGroup}</p>
             </div>
             <div className={styles.progRight}>
-              <p className={styles.progDesc}>{p.desc}</p>
+              <p className={styles.progDesc}>{p.description}</p>
             </div>
           </div>
         ))}
