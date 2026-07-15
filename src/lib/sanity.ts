@@ -25,5 +25,7 @@ export function urlFor(source: Parameters<typeof builder.image>[0]) {
 
 // Typed fetch helper
 export async function sanityFetch<T>(query: string, params?: Record<string, unknown>): Promise<T> {
-  return client.fetch<T>(query, params ?? {})
+  return client.fetch<T>(query, params ?? {}, {
+    next: { revalidate: 60 }, // re-check Sanity for fresh content every 60s
+  })
 }
