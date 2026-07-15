@@ -1,46 +1,71 @@
+import Image from 'next/image'
 import styles from './AboutTeam.module.css'
+import { sanityFetch, urlFor } from '@/lib/sanity'
+import { teamQuery } from '@/lib/queries'
 
-const team = [
-  { name: 'Team Member', role: 'Executive Director', type: 'Team' },
-  { name: 'Team Member', role: 'Sport Programme Lead', type: 'Team' },
-  { name: 'Team Member', role: 'Conservation Lead', type: 'Team' },
-  { name: 'Team Member', role: 'Culture & Heritage Lead', type: 'Team' },
-]
+type TeamMember = {
+  _id: string
+  name: string
+  role: string
+  type?: 'Team' | 'Board' | 'Advisory'
+  bio?: string
+  photo?: { asset?: { url?: string }; alt?: string }
+}
 
-const board = [
-  { name: 'Board Member', role: 'Chair, Board of Trustees', type: 'Board' },
-  { name: 'Board Member', role: 'Trustee — Legal', type: 'Board' },
-  { name: 'Board Member', role: 'Trustee — Finance', type: 'Board' },
-]
+function MemberGrid({ members }: { members: TeamMember[] }) {
+  return (
+    <div className={styles.grid}>
+      {members.map((member) => (
+        <div key={member._id} className={styles.member}>
+          {member.photo?.asset?.url ? (
+            <div className={styles.photo} style={{ position: 'relative', overflow: 'hidden' }}>
+              <Image
+                src={urlFor(member.photo).width(400).height(400).url()}
+                alt={member.photo.alt || member.name}
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+          ) : (
+            <div className={styles.photo} />
+          )}
+          <p className={styles.name}>{member.name}</p>
+          <p className={styles.role}>{member.role}</p>
+        </div>
+      ))}
+    </div>
+  )
+}
 
-export default function AboutTeam() {
+export default async function AboutTeam() {
+  const members = await sanityFetch<TeamMember[]>(teamQuery)
+
+  const team = members?.filter((m) => m.type === 'Team') ?? []
+  const board = members?.filter((m) => m.type === 'Board') ?? []
+  const advisory = members?.filter((m) => m.type === 'Advisory') ?? []
+
   return (
     <section className={styles.team} id="team">
-      <div className={styles.block}>
-        <p className={styles.label}>The team</p>
-        <div className={styles.grid}>
-          {team.map((member, i) => (
-            <div key={i} className={styles.member}>
-              <div className={styles.photo} />
-              <p className={styles.name}>{member.name}</p>
-              <p className={styles.role}>{member.role}</p>
-            </div>
-          ))}
+      {team.length > 0 && (
+        <div className={styles.block}>
+          <p className={styles.label}>The team</p>
+          <MemberGrid members={team} />
         </div>
-      </div>
+      )}
 
-      <div className={styles.block}>
-        <p className={styles.label}>Board of trustees</p>
-        <div className={styles.grid}>
-          {board.map((member, i) => (
-            <div key={i} className={styles.member}>
-              <div className={styles.photo} />
-              <p className={styles.name}>{member.name}</p>
-              <p className={styles.role}>{member.role}</p>
-            </div>
-          ))}
+      {board.length > 0 && (
+        <div className={styles.block}>
+          <p className={styles.label}>Board of trustees</p>
+          <MemberGrid members={board} />
         </div>
-      </div>
+      )}
+
+      {advisory.length > 0 && (
+        <div className={styles.block}>
+          <p className={styles.label}>Advisory</p>
+          <MemberGrid members={advisory} />
+        </div>
+      )}
     </section>
   )
 }

@@ -57,7 +57,7 @@ export const featuredStoriesQuery = `
 
 export const allStoriesQuery = `
   *[_type == "story"] | order(_createdAt desc) {
-    _id, name, quote, location, pillar, featured,
+    _id, name, quote, location, pillar, featured, fullStory,
     photo { asset->{ url }, alt }
   }
 `

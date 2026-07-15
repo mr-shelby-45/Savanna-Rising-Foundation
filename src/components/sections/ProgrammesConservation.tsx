@@ -1,24 +1,20 @@
 import styles from './ProgrammesConservation.module.css'
+import { sanityFetch } from '@/lib/sanity'
+import { programmesQuery } from '@/lib/queries'
 
-const programmes = [
-  {
-    name: 'Green Pitch Initiative',
-    target: 'All programme participants',
-    desc: 'Every pitch we use becomes a site of conservation action. We work with local authorities and communities to maintain, clean, and plant around the spaces where we gather — because the ground beneath the game matters.',
-  },
-  {
-    name: 'Match Day Tree Planting',
-    target: 'Players, families, communities',
-    desc: 'Each tournament and league day includes a community tree planting drive. Players bring family members. Elders choose the species. The trees stay long after the final whistle.',
-  },
-  {
-    name: 'Environmental Curriculum',
-    target: 'Coaches and youth players',
-    desc: 'Conservation education is woven into our coaching curriculum — not as a separate lesson, but as context. Why the land matters. How it connects to the game. What young people can do to protect it.',
-  },
-]
+type Programme = {
+  _id: string
+  title: string
+  pillar: string
+  tagline?: string
+  description?: string
+  targetGroup?: string
+}
 
-export default function ProgrammesConservation() {
+export default async function ProgrammesConservation() {
+  const all = await sanityFetch<Programme[]>(programmesQuery)
+  const programmes = all?.filter((p) => p.pillar === 'Conservation') ?? []
+
   return (
     <section className={styles.section} id="conservation">
       <div className={styles.pillarRow}>
@@ -36,14 +32,14 @@ export default function ProgrammesConservation() {
         </div>
       </div>
       <div className={styles.programmeList}>
-        {programmes.map((p, i) => (
-          <div key={i} className={styles.programme}>
+        {programmes.map((p) => (
+          <div key={p._id} className={styles.programme}>
             <div className={styles.progLeft}>
-              <h3 className={styles.progName}>{p.name}</h3>
-              <p className={styles.progTarget}>{p.target}</p>
+              <h3 className={styles.progName}>{p.title}</h3>
+              <p className={styles.progTarget}>{p.targetGroup}</p>
             </div>
             <div className={styles.progRight}>
-              <p className={styles.progDesc}>{p.desc}</p>
+              <p className={styles.progDesc}>{p.description}</p>
             </div>
           </div>
         ))}
