@@ -5,20 +5,110 @@ import styles from './GetInvolvedDonate.module.css'
 
 const amounts = [500, 1000, 2500, 5000]
 
+type MpesaStatus = 'idle' | 'loading' | 'success' | 'error'
+
 export default function GetInvolvedDonate() {
   const [selected, setSelected] = useState<number | null>(1000)
   const [custom, setCustom] = useState('')
+
+  const [mpesaSelected, setMpesaSelected] = useState<number | null>(500)
+  const [mpesaCustom, setMpesaCustom] = useState('')
+  const [phone, setPhone] = useState('')
+  const [mpesaStatus, setMpesaStatus] = useState<MpesaStatus>('idle')
+  const [mpesaMessage, setMpesaMessage] = useState('')
+
+  const mpesaAmount = mpesaCustom ? Number(mpesaCustom) : mpesaSelected
+
+  async function handleMpesaPay() {
+    if (!phone || !mpesaAmount) return
+
+    setMpesaStatus('loading')
+    setMpesaMessage('')
+
+    try {
+      const res = await fetch('/api/donate/mpesa', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phoneNumber: phone, amount: mpesaAmount }),
+      })
+      const data = await res.json()
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || 'Something went wrong. Please try again.')
+      }
+
+      setMpesaStatus('success')
+      setMpesaMessage(data.customerMessage || 'Check your phone to complete the payment.')
+    } catch (err) {
+      setMpesaStatus('error')
+      setMpesaMessage(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+    }
+  }
 
   return (
     <section className={styles.section} id="donate">
       <div className={styles.inner}>
         <div className={styles.mpesa}>
           <p className={styles.methodLabel}>M-Pesa</p>
-          <p className={styles.methodTitle}>Give via Paybill</p>
+          <p className={styles.methodTitle}>Give via M-Pesa</p>
           <p className={styles.methodDesc}>
-            Send any amount directly to our M-Pesa Paybill. Your contribution goes
-            straight to programme delivery on the ground.
+            Enter your number and amount below — we'll send a payment prompt straight to
+            your phone. Or use the Paybill manually if you prefer.
           </p>
+
+          <div className={styles.amounts}>
+            {amounts.map(a => (
+              <button
+                key={a}
+                className={`${styles.amountBtn} ${mpesaSelected === a && !mpesaCustom ? styles.amountActive : ''}`}
+                onClick={() => { setMpesaSelected(a); setMpesaCustom('') }}
+              >
+                KES {a.toLocaleString()}
+              </button>
+            ))}
+          </div>
+          <div className={styles.customRow}>
+            <label className={styles.customLabel}>Or enter amount (KES)</label>
+            <input
+              type="number"
+              className={styles.customInput}
+              placeholder="e.g. 3000"
+              value={mpesaCustom}
+              onChange={e => { setMpesaCustom(e.target.value); setMpesaSelected(null) }}
+              min={1}
+            />
+          </div>
+          <div className={styles.customRow}>
+            <label className={styles.customLabel}>M-Pesa phone number</label>
+            <input
+              type="tel"
+              className={styles.customInput}
+              placeholder="e.g. 0712345678"
+              value={phone}
+              onChange={e => setPhone(e.target.value)}
+            />
+          </div>
+
+          <button
+            className={styles.donateBtn}
+            onClick={handleMpesaPay}
+            disabled={!phone || !mpesaAmount || mpesaStatus === 'loading'}
+          >
+            {mpesaStatus === 'loading'
+              ? 'Sending prompt…'
+              : `Pay ${mpesaAmount ? `KES ${mpesaAmount.toLocaleString()}` : ''} with M-Pesa →`}
+          </button>
+
+          {mpesaMessage && (
+            <p
+              className={
+                mpesaStatus === 'error' ? styles.mpesaStatusError : styles.mpesaStatusSuccess
+              }
+            >
+              {mpesaMessage}
+            </p>
+          )}
+
           <div className={styles.paybillBlock}>
             <div className={styles.paybillItem}>
               <p className={styles.paybillLabel}>Paybill number</p>
@@ -31,7 +121,7 @@ export default function GetInvolvedDonate() {
             </div>
           </div>
           <div className={styles.steps}>
-            <p className={styles.stepsLabel}>How to pay</p>
+            <p className={styles.stepsLabel}>Prefer to pay manually?</p>
             <ol className={styles.stepsList}>
               <li>Go to M-Pesa on your phone</li>
               <li>Select Lipa na M-Pesa, then Paybill</li>
