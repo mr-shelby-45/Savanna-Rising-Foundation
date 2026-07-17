@@ -17,7 +17,37 @@ export default function GetInvolvedDonate() {
   const [mpesaStatus, setMpesaStatus] = useState<MpesaStatus>('idle')
   const [mpesaMessage, setMpesaMessage] = useState('')
 
+  const [stripeStatus, setStripeStatus] = useState<MpesaStatus>('idle')
+  const [stripeMessage, setStripeMessage] = useState('')
+
   const mpesaAmount = mpesaCustom ? Number(mpesaCustom) : mpesaSelected
+  const stripeAmount = custom ? Number(custom) : selected
+
+  async function handleStripePay() {
+    if (!stripeAmount) return
+
+    setStripeStatus('loading')
+    setStripeMessage('')
+
+    try {
+      const res = await fetch('/api/donate/stripe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: stripeAmount }),
+      })
+      const data = await res.json()
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || 'Something went wrong. Please try again.')
+      }
+
+      // Redirect the browser to Stripe's hosted checkout page
+      window.location.href = data.url
+    } catch (err) {
+      setStripeStatus('error')
+      setStripeMessage(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+    }
+  }
 
   async function handleMpesaPay() {
     if (!phone || !mpesaAmount) return
@@ -163,9 +193,16 @@ export default function GetInvolvedDonate() {
               min={100}
             />
           </div>
-          <button className={styles.donateBtn}>
-            Donate {custom ? `KES ${Number(custom).toLocaleString()}` : selected ? `KES ${selected.toLocaleString()}` : ''} →
+          <button
+            className={styles.donateBtn}
+            onClick={handleStripePay}
+            disabled={!stripeAmount || stripeStatus === 'loading'}
+          >
+            {stripeStatus === 'loading'
+              ? 'Redirecting…'
+              : `Donate ${stripeAmount ? `KES ${stripeAmount.toLocaleString()}` : ''} →`}
           </button>
+          {stripeMessage && <p className={styles.mpesaStatusError}>{stripeMessage}</p>}
           <p className={styles.stripeNote}>Secured by Stripe. No card details stored.</p>
         </div>
       </div>
