@@ -17,7 +17,8 @@
     "react-dom": "19.2.4",
     "react-email": "^6.6.5",
     "resend": "^6.16.0",
-    "sanity": "^6.2.0"
+    "sanity": "^6.2.0",
+    "stripe": "^22.3.2"
   },
   "devDependencies": {
     "@sanity/vision": "^6.2.0",
