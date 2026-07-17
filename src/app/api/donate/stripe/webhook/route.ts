@@ -2,14 +2,21 @@ import { NextRequest, NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import type Stripe from 'stripe'
 
+// Force the Node.js runtime (not Edge) - Stripe's SDK needs Node's Buffer
+// and crypto APIs for signature verification.
+export const runtime = 'nodejs'
+
 // Stripe calls this URL directly (server-to-server), same idea as the
 // M-Pesa callback. Unlike M-Pesa, Stripe cryptographically signs each
 // webhook request, so we can verify it genuinely came from Stripe rather
 // than trusting the URL alone.
 //
-// IMPORTANT: this requires the raw request body (not JSON-parsed) for
-// signature verification to work - see req.text() below instead of
-// req.json().
+// IMPORTANT: this needs the *exact raw bytes* of the request body for
+// signature verification to work. We read it via arrayBuffer() -> Buffer
+// rather than req.text() - reading as a string first can introduce
+// encoding/normalization differences (this was observed under Next.js's
+// Turbopack dev server specifically) that silently break the byte-for-byte
+// signature match, even though the content looks identical when logged.
 
 export async function POST(req: NextRequest) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
@@ -19,7 +26,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Webhook not configured' }, { status: 500 })
   }
 
-  const rawBody = await req.text()
+  const rawBody = Buffer.from(await req.arrayBuffer())
   const signature = req.headers.get('stripe-signature')
 
   if (!signature) {
