@@ -40,17 +40,32 @@ export async function POST(req: NextRequest) {
         <p><strong>Message:</strong> ${message || 'None'}</p>
       `
 
-    await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       // Using Resend's shared testing sender for now since we don't have
       // a verified custom domain yet. Once a real domain is set up and
       // verified in Resend, swap this for e.g.
       // 'Mwenda Kimathi Foundation <noreply@yourdomain.org>'.
       from: 'Mwenda Kimathi Foundation <onboarding@resend.dev>',
-      to: 'iankithinji19@gmail.com',
+      // NOTE: Resend's testing sender can only send to the email address
+      // the Resend account was signed up with, until a custom domain is
+      // verified. Swap this once that happens.
+      to: 'kyrexy6068@gmail.com',
       replyTo: email,
       subject,
       html,
     })
+
+    if (error) {
+      // The Resend SDK does NOT throw on failure - it always resolves,
+      // returning { data, error }. A previous version of this route never
+      // checked `error`, so failed sends (e.g. a 403 from Resend) were
+      // silently reported back to the frontend as a success. Always check
+      // this explicitly - don't assume "no exception" means "it worked."
+      console.error('Resend API error:', error)
+      return NextResponse.json({ error: error.message || 'Failed to send' }, { status: 500 })
+    }
+
+    console.log('Email sent successfully', { id: data?.id, subject })
 
     return NextResponse.json({ success: true })
   } catch (error) {
