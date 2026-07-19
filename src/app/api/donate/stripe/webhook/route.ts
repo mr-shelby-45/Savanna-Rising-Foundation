@@ -49,7 +49,11 @@ export async function POST(req: NextRequest) {
 
     console.log('Stripe payment SUCCESS', {
       sessionId: session.id,
-      amountTotal: session.amount_total, // in smallest currency unit
+      // Stripe reports amounts in the smallest currency subunit (e.g.
+      // 500000 = KES 5,000). Logging both so this doesn't misread as an
+      // actual amount discrepancy.
+      amountTotalSubunits: session.amount_total,
+      amount: session.amount_total != null ? session.amount_total / 100 : null,
       currency: session.currency,
       customerEmail: session.customer_details?.email,
     })
