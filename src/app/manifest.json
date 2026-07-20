@@ -1,0 +1,14 @@
+{
+  "name": "Mwenda Kimathi Foundation",
+  "short_name": "Mwenda Kimathi",
+  "icons": [
+    {
+      "src": "/icon1.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#606C38",
+  "background_color": "#FAEDCD",
+  "display": "standalone"
+}
