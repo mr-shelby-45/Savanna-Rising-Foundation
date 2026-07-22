@@ -3,7 +3,6 @@ import Footer from '@/components/ui/Footer'
 import ImpactHeader from '@/components/sections/ImpactHeader'
 import ImpactStats from '@/components/sections/ImpactStats'
 import ImpactStories from '@/components/sections/ImpactStories'
-import ImpactReports from '@/components/sections/ImpactReports'
 
 export const metadata = {
   title: 'Impact — Mwenda Kimathi Foundation',
@@ -18,7 +17,6 @@ export default function ImpactPage() {
         <ImpactHeader />
         <ImpactStats />
         <ImpactStories />
-        <ImpactReports />
       </main>
       <Footer />
     </>
