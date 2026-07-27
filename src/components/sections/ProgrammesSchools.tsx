@@ -1,24 +1,20 @@
 import styles from './ProgrammesSchools.module.css'
+import { sanityFetch } from '@/lib/sanity'
+import { programmesQuery } from '@/lib/queries'
 
-const schools = [
-  {
-    name: 'School Leagues',
-    target: 'Primary & secondary schools',
-    desc: 'Inter-school football and rugby leagues with conservation and cultural components built into every match day. Schools compete on the pitch and collaborate off it.',
-  },
-  {
-    name: 'Classroom to Pitch',
-    target: 'Teachers and pupils aged 10–18',
-    desc: 'A curriculum resource linking sport, environmental science, and social studies. Built with teachers, used in classrooms, brought to life on the pitch.',
-  },
-  {
-    name: 'Youth Leadership Track',
-    target: 'Students aged 15–18',
-    desc: 'A structured pathway for older students to move from player to junior coach to community leader. The pitch is the classroom. The community is the qualification.',
-  },
-]
+type Programme = {
+  _id: string
+  title: string
+  pillar: string
+  tagline?: string
+  description?: string
+  targetGroup?: string
+}
 
-export default function ProgrammesSchools() {
+export default async function ProgrammesSchools() {
+  const all = await sanityFetch<Programme[]>(programmesQuery)
+  const schools = all?.filter((p) => p.pillar === 'Schools') ?? []
+
   return (
     <section className={styles.section} id="schools">
       <div className={styles.top}>
@@ -37,14 +33,14 @@ export default function ProgrammesSchools() {
         </div>
       </div>
       <div className={styles.programmeList}>
-        {schools.map((p, i) => (
-          <div key={i} className={styles.programme}>
+        {schools.map((p) => (
+          <div key={p._id} className={styles.programme}>
             <div className={styles.progLeft}>
-              <h3 className={styles.progName}>{p.name}</h3>
-              <p className={styles.progTarget}>{p.target}</p>
+              <h3 className={styles.progName}>{p.title}</h3>
+              <p className={styles.progTarget}>{p.targetGroup}</p>
             </div>
             <div className={styles.progRight}>
-              <p className={styles.progDesc}>{p.desc}</p>
+              <p className={styles.progDesc}>{p.description}</p>
             </div>
           </div>
         ))}
