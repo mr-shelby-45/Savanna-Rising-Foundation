@@ -6,8 +6,7 @@ export default function ProgrammesHeader() {
       <p className={styles.label}>Programmes</p>
       <h1 className={styles.title}>Three commitments.<br />One living idea.</h1>
       <p className={styles.sub}>
-        Every programme we run connects back to the same belief — that sport, done well,
-        opens a door. What we build through that door is community, conservation, and culture.
+        By integrating athletics, environmental stewardship, and cultural heritage, our initiatives build strong leaders and resilient communities across Kenya.
       </p>
     </section>
   )

@@ -24,7 +24,7 @@ export default function AboutGovernance() {
             <p className={styles.statLabel}>Registered — Kenya</p>
           </div>
           <div className={styles.stat}>
-            <p className={styles.statValue}>Nakuru</p>
+            <p className={styles.statValue}>Meru</p>
             <p className={styles.statLabel}>Founding county</p>
           </div>
           <div className={styles.reportLink}>
