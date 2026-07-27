@@ -21,7 +21,7 @@ export default function Pillars() {
             and coaching programmes that take the game seriously and use it to build young
             people who take themselves seriously.
           </p>
-          <Link href="/programmes#sport" className={styles.link}>Explore our sport programmes </Link>
+          <Link href="/programmes#sport" className={styles.link}>Explore our sports programmes</Link>
         </div>
       </div>
 
@@ -46,7 +46,7 @@ export default function Pillars() {
             celebrate. Culture, for us, is not preserved behind glass — it is lived,
             played, and passed on at the pitch.
           </p>
-          <Link href="/programmes#culture" className={styles.link}>Explore our cultural programmes </Link>
+          <Link href="/programmes#culture" className={styles.link}>Explore our cultural programmes</Link>
         </div>
       </div>
     </section>

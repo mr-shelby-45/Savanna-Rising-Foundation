@@ -39,6 +39,7 @@
   color: var(--charcoal);
   letter-spacing: -0.02em;
   line-height: 1;
+  overflow-wrap: break-word;
 }
 
 .terra { color: var(--terra); }
@@ -78,6 +79,13 @@
 
 .cell {
   padding: var(--sp-6) var(--sp-6) var(--sp-6) 0;
+  /* Grid items default to min-width: auto, which prevents them from
+     shrinking below their content's natural width - meaning a long
+     single word like "Conservation" (nothing to wrap at) can overflow
+     its column and bleed into the next one. min-width: 0 lets the cell
+     actually shrink to the track width, and overflow-wrap (on .name)
+     gives long words somewhere to break if they still don't fit. */
+  min-width: 0;
 }
 
 .cellRight {
