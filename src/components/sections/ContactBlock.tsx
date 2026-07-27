@@ -4,9 +4,9 @@ import { useState } from 'react'
 import styles from './ContactBlock.module.css'
 
 const details = [
-  { label: 'Email', value: 'hello@savannarising.org', href: 'mailto:hello@savannarising.org' },
-  { label: 'Phone', value: '+254 700 000 000', href: 'tel:+254700000000' },
-  { label: 'Address', value: 'Nakuru, Kenya', href: null },
+  { label: 'Email', value: 'mwendagichamu@gmail.com', href: 'mailto:mwendagichamu@gmail.com' },
+  { label: 'Phone', value: '+254 700 940 777', href: 'tel:+254700940777' },
+  { label: 'Address', value: 'Meru, Kenya', href: null },
 ]
 
 const social = [

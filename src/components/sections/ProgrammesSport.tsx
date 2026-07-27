@@ -9,7 +9,7 @@ const activities = [
   },
   {
     name: 'Youth Coaching Workshops',
-    target: 'Volunteer coaches, all genders',
+    target: 'Volunteer coaches & mentors across all genders',
     desc: 'Skill training paired with character-building — coaching that shapes how a young person carries themselves, not just how they play.',
   },
   {
@@ -29,10 +29,7 @@ export default function ProgrammesSport() {
         </div>
         <div className={styles.pillarRight}>
           <p className={styles.pillarDesc}>
-            Football and rugby are our entry points. The game is worth running for its own
-            sake — and because of what it reveals in the people who play it. We run
-            structured, properly resourced sport programmes that take competition seriously
-            and use it to build young people who take themselves seriously.
+            Football and rugby are our primary entry points. Through leagues, local tournaments, and youth coaching, we use organized athletics to build young leaders who want to improve themselves, their health, and their communities.
           </p>
         </div>
       </div>

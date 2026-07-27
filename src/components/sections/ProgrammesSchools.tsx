@@ -15,7 +15,7 @@ const activities = [
   {
     name: 'Equipment & Gear Support',
     target: 'Under-resourced schools',
-    desc: 'Real sports gear for schools that don\'t have it — because a programme built on discipline and access can\'t ask students to show up without either.',
+    desc: 'Durable sports kit and equipment support, to ensure equal chances at success for every student on & off the field.',
   },
 ]
 
