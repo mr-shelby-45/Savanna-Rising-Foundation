@@ -7,7 +7,7 @@ export default defineType({
   fields: [
     defineField({ name: 'title', title: 'Programme Title', type: 'string', validation: Rule => Rule.required() }),
     defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title' } }),
-    defineField({ name: 'pillar', title: 'Primary Pillar', type: 'string', options: { list: ['Sport', 'Conservation', 'Culture', 'Schools'] }, validation: Rule => Rule.required() }),
+    defineField({ name: 'pillar', title: 'Primary Pillar', type: 'string', options: { list: ['Sport', 'Conservation', 'Culture'] }, validation: Rule => Rule.required() }),
     defineField({ name: 'tagline', title: 'Tagline', type: 'string' }),
     defineField({ name: 'description', title: 'Description', type: 'text', rows: 5 }),
     defineField({ name: 'image', title: 'Programme Image', type: 'image', options: { hotspot: true } }),

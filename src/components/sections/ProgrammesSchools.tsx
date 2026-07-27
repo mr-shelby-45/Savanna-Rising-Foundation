@@ -1,20 +1,25 @@
+import Link from 'next/link'
 import styles from './ProgrammesSchools.module.css'
-import { sanityFetch } from '@/lib/sanity'
-import { programmesQuery } from '@/lib/queries'
 
-type Programme = {
-  _id: string
-  title: string
-  pillar: string
-  tagline?: string
-  description?: string
-  targetGroup?: string
-}
+const activities = [
+  {
+    name: 'In-School Sports Clinics',
+    target: 'Primary & secondary schools',
+    desc: 'Sports training taken directly to school grounds — no travel, no barrier to entry, just the game showing up where students already are.',
+  },
+  {
+    name: 'Life Skills Education',
+    target: 'Teachers and pupils',
+    desc: 'Academic focus paired with team leadership concepts — the classroom and the pitch reinforcing the same lessons from two directions.',
+  },
+  {
+    name: 'Equipment & Gear Support',
+    target: 'Under-resourced schools',
+    desc: 'Real sports gear for schools that don\'t have it — because a programme built on discipline and access can\'t ask students to show up without either.',
+  },
+]
 
-export default async function ProgrammesSchools() {
-  const all = await sanityFetch<Programme[]>(programmesQuery)
-  const schools = all?.filter((p) => p.pillar === 'Schools') ?? []
-
+export default function ProgrammesSchools() {
   return (
     <section className={styles.section} id="schools">
       <div className={styles.top}>
@@ -33,18 +38,21 @@ export default async function ProgrammesSchools() {
         </div>
       </div>
       <div className={styles.programmeList}>
-        {schools.map((p) => (
-          <div key={p._id} className={styles.programme}>
+        {activities.map((p) => (
+          <div key={p.name} className={styles.programme}>
             <div className={styles.progLeft}>
-              <h3 className={styles.progName}>{p.title}</h3>
-              <p className={styles.progTarget}>{p.targetGroup}</p>
+              <h3 className={styles.progName}>{p.name}</h3>
+              <p className={styles.progTarget}>{p.target}</p>
             </div>
             <div className={styles.progRight}>
-              <p className={styles.progDesc}>{p.description}</p>
+              <p className={styles.progDesc}>{p.desc}</p>
             </div>
           </div>
         ))}
       </div>
+      <Link href="/get-involved#partner" className={styles.cta}>
+        Partner your school with us →
+      </Link>
     </section>
   )
 }

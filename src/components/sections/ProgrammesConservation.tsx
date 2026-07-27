@@ -1,20 +1,25 @@
+import Link from 'next/link'
 import styles from './ProgrammesConservation.module.css'
-import { sanityFetch } from '@/lib/sanity'
-import { programmesQuery } from '@/lib/queries'
 
-type Programme = {
-  _id: string
-  title: string
-  pillar: string
-  tagline?: string
-  description?: string
-  targetGroup?: string
-}
+const activities = [
+  {
+    name: 'Match-Day Tree Planting',
+    target: 'Players, families, communities',
+    desc: 'Native trees go into the ground around the pitches and venues we use, before kick-off — the crowd already gathered is the crowd that plants.',
+  },
+  {
+    name: 'Eco-Curriculum',
+    target: 'Coaches and youth players',
+    desc: 'Environmental awareness woven into coaching sessions — not a separate lesson, just part of how we talk about the ground we play on.',
+  },
+  {
+    name: 'Pitch & Field Stewardship',
+    target: 'All programme participants',
+    desc: 'Community clean-up and maintenance days for the spaces we gather in, because the ground beneath the game deserves the same care as the game itself.',
+  },
+]
 
-export default async function ProgrammesConservation() {
-  const all = await sanityFetch<Programme[]>(programmesQuery)
-  const programmes = all?.filter((p) => p.pillar === 'Conservation') ?? []
-
+export default function ProgrammesConservation() {
   return (
     <section className={styles.section} id="conservation">
       <div className={styles.pillarRow}>
@@ -32,18 +37,21 @@ export default async function ProgrammesConservation() {
         </div>
       </div>
       <div className={styles.programmeList}>
-        {programmes.map((p) => (
-          <div key={p._id} className={styles.programme}>
+        {activities.map((p) => (
+          <div key={p.name} className={styles.programme}>
             <div className={styles.progLeft}>
-              <h3 className={styles.progName}>{p.title}</h3>
-              <p className={styles.progTarget}>{p.targetGroup}</p>
+              <h3 className={styles.progName}>{p.name}</h3>
+              <p className={styles.progTarget}>{p.target}</p>
             </div>
             <div className={styles.progRight}>
-              <p className={styles.progDesc}>{p.description}</p>
+              <p className={styles.progDesc}>{p.desc}</p>
             </div>
           </div>
         ))}
       </div>
+      <Link href="/get-involved#donate" className={styles.cta}>
+        Sponsor native trees →
+      </Link>
     </section>
   )
 }

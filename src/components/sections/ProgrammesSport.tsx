@@ -1,20 +1,25 @@
+import Link from 'next/link'
 import styles from './ProgrammesSport.module.css'
-import { sanityFetch } from '@/lib/sanity'
-import { programmesQuery } from '@/lib/queries'
 
-type Programme = {
-  _id: string
-  title: string
-  pillar: string
-  tagline?: string
-  description?: string
-  targetGroup?: string
-}
+const activities = [
+  {
+    name: 'Leagues & Tournaments',
+    target: 'Regional football & rugby',
+    desc: 'Organised regional competitions, run properly — qualified referees, structured seasons, a level of seriousness that tells every player their game matters.',
+  },
+  {
+    name: 'Youth Coaching Workshops',
+    target: 'Volunteer coaches, all genders',
+    desc: 'Skill training paired with character-building — coaching that shapes how a young person carries themselves, not just how they play.',
+  },
+  {
+    name: 'Leadership & Fair Play',
+    target: 'All age groups',
+    desc: 'Mentorship built into the rhythm of the game itself, in the moments before and after a match, where the real conversations happen.',
+  },
+]
 
-export default async function ProgrammesSport() {
-  const all = await sanityFetch<Programme[]>(programmesQuery)
-  const programmes = all?.filter((p) => p.pillar === 'Sport') ?? []
-
+export default function ProgrammesSport() {
   return (
     <section className={styles.section} id="sport">
       <div className={styles.pillarRow}>
@@ -32,18 +37,21 @@ export default async function ProgrammesSport() {
         </div>
       </div>
       <div className={styles.programmeList}>
-        {programmes.map((p) => (
-          <div key={p._id} className={styles.programme}>
+        {activities.map((p) => (
+          <div key={p.name} className={styles.programme}>
             <div className={styles.progLeft}>
-              <h3 className={styles.progName}>{p.title}</h3>
-              <p className={styles.progTarget}>{p.targetGroup}</p>
+              <h3 className={styles.progName}>{p.name}</h3>
+              <p className={styles.progTarget}>{p.target}</p>
             </div>
             <div className={styles.progRight}>
-              <p className={styles.progDesc}>{p.description}</p>
+              <p className={styles.progDesc}>{p.desc}</p>
             </div>
           </div>
         ))}
       </div>
+      <Link href="/get-involved#donate" className={styles.cta}>
+        Support a league or tournament →
+      </Link>
     </section>
   )
 }
