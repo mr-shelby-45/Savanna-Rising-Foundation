@@ -35,7 +35,7 @@ export default function Pillars() {
             curriculum, and make conservation a normal part of how our communities gather —
             not a separate agenda, but part of the same conversation.
           </p>
-          <Link href="/programmes#conservation" className={styles.link}>Explore conservation impact</Link>
+          <Link href="/programmes#conservation" className={styles.link}>Explore our conservation programmes</Link>
         </div>
         <div className={`${styles.cell} ${styles.cellRight}`}>
           <p className={styles.label}>Pillar three</p>

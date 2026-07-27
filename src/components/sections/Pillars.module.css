@@ -34,7 +34,7 @@
 
 .name {
   font-family: var(--font-display);
-  font-size: clamp(36px, 4.5vw, 64px);
+  font-size: clamp(32px, 4vw, 64px);
   font-weight: 800;
   color: var(--charcoal);
   letter-spacing: -0.02em;
@@ -109,5 +109,13 @@
     padding: var(--sp-6) 0;
     border-left: none;
     border-top: 1px solid rgba(28, 26, 23, 0.15);
+  }
+
+  /* "Conservation" is long enough that the default clamp still runs too
+     large on narrower screens, causing it to wrap mid-word. Shrinking it
+     specifically at this breakpoint keeps every pillar name on one line
+     without affecting desktop sizing. */
+  .name {
+    font-size: clamp(28px, 8vw, 44px);
   }
 }
