@@ -8,6 +8,12 @@ export default function ProgrammesHeader() {
       <p className={styles.sub}>
         By integrating athletics, environmental stewardship, and cultural heritage, our initiatives build strong leaders and resilient communities across Kenya.
       </p>
+      <div className={styles.anchors}>
+        <a href="#sport" className={styles.anchor}>Sport</a>
+        <a href="#conservation" className={styles.anchor}>Conservation</a>
+        <a href="#culture" className={styles.anchor}>Culture</a>
+        <a href="#schools" className={styles.anchor}>Schools</a>
+      </div>
     </section>
   )
 }

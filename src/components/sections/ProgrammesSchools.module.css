@@ -98,3 +98,17 @@
   .top { grid-template-columns: 1fr; gap: var(--sp-4); }
   .programme { grid-template-columns: 1fr; gap: var(--sp-3); }
 }
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: var(--sp-6);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--terra);
+  text-decoration: none;
+}
+
+.cta:hover { gap: 14px; }
+.cta:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }

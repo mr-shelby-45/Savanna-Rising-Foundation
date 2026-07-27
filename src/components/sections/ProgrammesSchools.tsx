@@ -1,20 +1,21 @@
+import Link from 'next/link'
 import styles from './ProgrammesSchools.module.css'
 
-const schools = [
+const activities = [
   {
-    name: 'School Leagues',
+    name: 'In-School Sports Clinics',
     target: 'Primary & secondary schools',
-    desc: 'Inter-school football and rugby leagues with conservation and cultural components built into every match day. Schools compete on the pitch and collaborate off it.',
+    desc: 'Sports training taken directly to school grounds — no travel, no barrier to entry, just the game showing up where students already are.',
   },
   {
-    name: 'Classroom to Pitch',
-    target: 'Teachers and pupils aged 10–18',
-    desc: 'A curriculum resource linking sport, environmental science, and social studies. Built with teachers, used in classrooms, brought to life on the pitch.',
+    name: 'Life Skills Education',
+    target: 'Teachers and pupils',
+    desc: 'Academic focus paired with team leadership concepts — the classroom and the pitch reinforcing the same lessons from two directions.',
   },
   {
-    name: 'Youth Leadership Track',
-    target: 'Students aged 15–18',
-    desc: 'A structured pathway for older students to move from player to junior coach to community leader. The pitch is the classroom. The community is the qualification.',
+    name: 'Equipment & Gear Support',
+    target: 'Under-resourced schools',
+    desc: 'Durable sports kit and equipment support, to ensure equal chances at success for every student on & off the field.',
   },
 ]
 
@@ -37,8 +38,8 @@ export default function ProgrammesSchools() {
         </div>
       </div>
       <div className={styles.programmeList}>
-        {schools.map((p, i) => (
-          <div key={i} className={styles.programme}>
+        {activities.map((p) => (
+          <div key={p.name} className={styles.programme}>
             <div className={styles.progLeft}>
               <h3 className={styles.progName}>{p.name}</h3>
               <p className={styles.progTarget}>{p.target}</p>
@@ -49,6 +50,9 @@ export default function ProgrammesSchools() {
           </div>
         ))}
       </div>
+      <Link href="/get-involved#partner" className={styles.cta}>
+        Partner your school with us →
+      </Link>
     </section>
   )
 }
