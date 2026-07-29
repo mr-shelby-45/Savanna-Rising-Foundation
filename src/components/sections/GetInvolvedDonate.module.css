@@ -158,6 +158,25 @@
   margin-top: var(--sp-4);
 }
 
+.thankYou {
+  padding: var(--sp-4) 0;
+}
+
+.placeholderLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--terra);
+  text-decoration: none;
+  margin-top: var(--sp-2);
+}
+
+.placeholderLink:hover { gap: 14px; }
+.placeholderLink:focus-visible { outline: 2px solid var(--terra); outline-offset: 2px; }
+
 @media (max-width: 768px) {
   .section { padding: var(--sp-8) var(--sp-3); }
   .presets { grid-template-columns: repeat(2, 1fr); }

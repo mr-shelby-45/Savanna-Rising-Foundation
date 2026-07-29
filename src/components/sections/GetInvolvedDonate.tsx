@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import styles from './GetInvolvedDonate.module.css'
 
 type Currency = 'KES' | 'USD'
@@ -11,6 +12,9 @@ const PRESETS: Record<Currency, number[]> = {
 }
 
 export default function GetInvolvedDonate() {
+  const searchParams = useSearchParams()
+  const isSuccess = searchParams.get('donation') === 'success'
+
   const [currency, setCurrency] = useState<Currency>('KES')
   const [amount, setAmount] = useState<number>(PRESETS.KES[1])
   const [email, setEmail] = useState('')
@@ -70,90 +74,107 @@ export default function GetInvolvedDonate() {
   return (
     <section className={styles.section} id="donate">
       <div className={styles.wrapper}>
-        <p className={styles.methodLabel}>Donate</p>
-        <h2 className={styles.title}>Support our work</h2>
-        <p className={styles.desc}>
-          Give locally via M-Pesa or from anywhere internationally by card — both are handled
-          securely through Paystack.
-        </p>
-
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.currencyToggle}>
-            {!unsupportedCurrencies.includes('KES') && (
-              <button
-                type="button"
-                className={currency === 'KES' ? styles.currencyActive : styles.currencyBtn}
-                onClick={() => handleCurrencyChange('KES')}
-              >
-                Kenya (M-Pesa / Card) · KES
-              </button>
-            )}
-            {!unsupportedCurrencies.includes('USD') && (
-              <button
-                type="button"
-                className={currency === 'USD' ? styles.currencyActive : styles.currencyBtn}
-                onClick={() => handleCurrencyChange('USD')}
-              >
-                International (Card) · USD
-              </button>
-            )}
-          </div>
-          {unsupportedCurrencies.length >= 2 && (
-            <p className={styles.error}>
-              Online giving is temporarily unavailable. Please reach out via our{' '}
-              <a href="/contact">contact page</a> and we&apos;ll help you make a gift directly.
+        {isSuccess ? (
+          <div className={styles.thankYou}>
+            <p className={styles.methodLabel}>Thank you</p>
+            <h2 className={styles.title}>Your gift is on its way to making a difference.</h2>
+            <p className={styles.desc}>
+              We&apos;ve received your donation. A receipt is on its way to your inbox — please
+              check your email (and your spam folder, just in case) for confirmation.
             </p>
-          )}
-
-          <div className={styles.presets}>
-            {PRESETS[currency].map((preset) => (
-              <button
-                type="button"
-                key={preset}
-                className={amount === preset ? styles.presetActive : styles.presetBtn}
-                onClick={() => setAmount(preset)}
-              >
-                {currency} {preset.toLocaleString()}
-              </button>
-            ))}
+            <a href="/get-involved#donate" className={styles.placeholderLink}>
+              ← Make another donation
+            </a>
           </div>
+        ) : (
+          <>
+            <p className={styles.methodLabel}>Donate</p>
+            <h2 className={styles.title}>Support our work</h2>
+            <p className={styles.desc}>
+              Give locally via M-Pesa or from anywhere internationally by card — both are handled
+              securely through Paystack.
+            </p>
 
-          <label className={styles.fieldLabel} htmlFor="donate-amount">
-            Amount ({currency})
-          </label>
-          <input
-            id="donate-amount"
-            className={styles.input}
-            type="number"
-            min={1}
-            value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
-          />
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <div className={styles.currencyToggle}>
+                {!unsupportedCurrencies.includes('KES') && (
+                  <button
+                    type="button"
+                    className={currency === 'KES' ? styles.currencyActive : styles.currencyBtn}
+                    onClick={() => handleCurrencyChange('KES')}
+                  >
+                    Kenya (M-Pesa / Card) · KES
+                  </button>
+                )}
+                {!unsupportedCurrencies.includes('USD') && (
+                  <button
+                    type="button"
+                    className={currency === 'USD' ? styles.currencyActive : styles.currencyBtn}
+                    onClick={() => handleCurrencyChange('USD')}
+                  >
+                    International (Card) · USD
+                  </button>
+                )}
+              </div>
+              {unsupportedCurrencies.length >= 2 && (
+                <p className={styles.error}>
+                  Online giving is temporarily unavailable. Please reach out via our{' '}
+                  <a href="/contact">contact page</a> and we&apos;ll help you make a gift
+                  directly.
+                </p>
+              )}
 
-          <label className={styles.fieldLabel} htmlFor="donate-email">
-            Email (for your receipt)
-          </label>
-          <input
-            id="donate-email"
-            className={styles.input}
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
-            required
-          />
+              <div className={styles.presets}>
+                {PRESETS[currency].map((preset) => (
+                  <button
+                    type="button"
+                    key={preset}
+                    className={amount === preset ? styles.presetActive : styles.presetBtn}
+                    onClick={() => setAmount(preset)}
+                  >
+                    {currency} {preset.toLocaleString()}
+                  </button>
+                ))}
+              </div>
 
-          {error && <p className={styles.error}>{error}</p>}
+              <label className={styles.fieldLabel} htmlFor="donate-amount">
+                Amount ({currency})
+              </label>
+              <input
+                id="donate-amount"
+                className={styles.input}
+                type="number"
+                min={1}
+                value={amount}
+                onChange={(e) => setAmount(Number(e.target.value))}
+              />
 
-          <button type="submit" className={styles.submitBtn} disabled={loading}>
-            {loading ? 'Redirecting…' : `Donate ${currency} ${amount.toLocaleString()}`}
-          </button>
-        </form>
+              <label className={styles.fieldLabel} htmlFor="donate-email">
+                Email (for your receipt)
+              </label>
+              <input
+                id="donate-email"
+                className={styles.input}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                required
+              />
 
-        <p className={styles.smallPrint}>
-          Payments are processed securely by Paystack. We don't store your card or M-Pesa
-          details.
-        </p>
+              {error && <p className={styles.error}>{error}</p>}
+
+              <button type="submit" className={styles.submitBtn} disabled={loading}>
+                {loading ? 'Redirecting…' : `Donate ${currency} ${amount.toLocaleString()}`}
+              </button>
+            </form>
+
+            <p className={styles.smallPrint}>
+              Payments are processed securely by Paystack. We don&apos;t store your card or
+              M-Pesa details.
+            </p>
+          </>
+        )}
       </div>
     </section>
   )

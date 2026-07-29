@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import Nav from '@/components/ui/Nav'
 import Footer from '@/components/ui/Footer'
 import GetInvolvedHeader from '@/components/sections/GetInvolvedHeader'
@@ -16,7 +17,12 @@ export default function GetInvolvedPage() {
       <Nav />
       <main>
         <GetInvolvedHeader />
-        <GetInvolvedDonate />
+        {/* GetInvolvedDonate reads the ?donation=success param via
+            useSearchParams to show a thank-you state after Paystack
+            redirects back - that hook requires a Suspense boundary. */}
+        <Suspense fallback={null}>
+          <GetInvolvedDonate />
+        </Suspense>
         <GetInvolvedVolunteer />
         <GetInvolvedPartner />
       </main>
