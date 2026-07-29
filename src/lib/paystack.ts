@@ -55,7 +55,7 @@ export async function initializeTransaction({
       amount: amountInSubunit,
       currency,
       reference,
-      callback_url: `${process.env.NEXT_PUBLIC_SITE_URL ?? ''}/get-involved?donation=success`,
+      callback_url: `${process.env.NEXT_PUBLIC_SITE_URL ?? ''}/get-involved?donation=success#donate`,
     }),
   })
 
