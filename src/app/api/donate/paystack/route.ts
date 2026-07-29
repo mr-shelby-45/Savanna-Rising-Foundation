@@ -35,9 +35,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, url: data.authorization_url })
   } catch (err) {
     console.error('Paystack initialize error:', err)
-    return NextResponse.json(
-      { ok: false, error: err instanceof Error ? err.message : 'Something went wrong' },
-      { status: 500 }
-    )
+
+    const message = err instanceof Error ? err.message : 'Something went wrong'
+
+    // Paystack returns this exact message when a currency hasn't been
+    // enabled on the merchant account (e.g. USD not yet activated
+    // alongside the default KES). Surface a stable code so the frontend
+    // can disable that currency going forward rather than fragile string
+    // matching on our error copy.
+    const code = /currency not supported/i.test(message) ? 'currency_not_supported' : undefined
+
+    return NextResponse.json({ ok: false, error: message, code }, { status: 500 })
   }
 }

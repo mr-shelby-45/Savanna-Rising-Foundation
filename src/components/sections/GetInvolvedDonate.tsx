@@ -16,6 +16,10 @@ export default function GetInvolvedDonate() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  // Currencies Paystack has told us aren't enabled on the merchant account
+  // yet (e.g. USD not activated alongside default KES). Once we learn one
+  // is unsupported, hide it rather than let donors hit a dead-end error.
+  const [unsupportedCurrencies, setUnsupportedCurrencies] = useState<Currency[]>([])
 
   function handleCurrencyChange(next: Currency) {
     setCurrency(next)
@@ -41,7 +45,17 @@ export default function GetInvolvedDonate() {
       const data = await res.json()
 
       if (!data.ok) {
-        setError(data.error || 'Something went wrong. Please try again.')
+        if (data.code === 'currency_not_supported') {
+          setUnsupportedCurrencies((prev) => (prev.includes(currency) ? prev : [...prev, currency]))
+          setError(
+            `${currency} donations aren't available online just yet. We've switched you to ${currency === 'KES' ? 'USD' : 'KES'} — please try again, or reach out via our contact page.`
+          )
+          const fallback: Currency = currency === 'KES' ? 'USD' : 'KES'
+          setCurrency(fallback)
+          setAmount(PRESETS[fallback][1])
+        } else {
+          setError(data.error || 'Something went wrong. Please try again.')
+        }
         setLoading(false)
         return
       }
@@ -65,21 +79,31 @@ export default function GetInvolvedDonate() {
 
         <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.currencyToggle}>
-            <button
-              type="button"
-              className={currency === 'KES' ? styles.currencyActive : styles.currencyBtn}
-              onClick={() => handleCurrencyChange('KES')}
-            >
-              Kenya (M-Pesa / Card) · KES
-            </button>
-            <button
-              type="button"
-              className={currency === 'USD' ? styles.currencyActive : styles.currencyBtn}
-              onClick={() => handleCurrencyChange('USD')}
-            >
-              International (Card) · USD
-            </button>
+            {!unsupportedCurrencies.includes('KES') && (
+              <button
+                type="button"
+                className={currency === 'KES' ? styles.currencyActive : styles.currencyBtn}
+                onClick={() => handleCurrencyChange('KES')}
+              >
+                Kenya (M-Pesa / Card) · KES
+              </button>
+            )}
+            {!unsupportedCurrencies.includes('USD') && (
+              <button
+                type="button"
+                className={currency === 'USD' ? styles.currencyActive : styles.currencyBtn}
+                onClick={() => handleCurrencyChange('USD')}
+              >
+                International (Card) · USD
+              </button>
+            )}
           </div>
+          {unsupportedCurrencies.length >= 2 && (
+            <p className={styles.error}>
+              Online giving is temporarily unavailable. Please reach out via our{' '}
+              <a href="/contact">contact page</a> and we&apos;ll help you make a gift directly.
+            </p>
+          )}
 
           <div className={styles.presets}>
             {PRESETS[currency].map((preset) => (
