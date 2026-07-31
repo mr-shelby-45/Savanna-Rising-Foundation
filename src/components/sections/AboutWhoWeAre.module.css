@@ -1,4 +1,4 @@
-.story {
+.section {
   background: var(--cream);
   padding: var(--sp-16) var(--sp-6);
 }
@@ -41,7 +41,7 @@
 }
 
 @media (max-width: 768px) {
-  .story { padding: var(--sp-12) var(--sp-3); }
+  .section { padding: var(--sp-12) var(--sp-3); }
   .inner { grid-template-columns: 1fr; gap: var(--sp-4); }
   .body { font-size: 16px; }
 }

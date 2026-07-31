@@ -1,7 +1,8 @@
 import Nav from '@/components/ui/Nav'
 import Footer from '@/components/ui/Footer'
 import AboutHeader from '@/components/sections/AboutHeader'
-import AboutStory from '@/components/sections/AboutStory'
+import AboutFounder from '@/components/sections/AboutFounder'
+import AboutWhoWeAre from '@/components/sections/AboutWhoWeAre'
 import AboutValues from '@/components/sections/AboutValues'
 import AboutTeam from '@/components/sections/AboutTeam'
 import AboutGovernance from '@/components/sections/AboutGovernance'
@@ -17,7 +18,8 @@ export default function AboutPage() {
       <Nav />
       <main>
         <AboutHeader />
-        <AboutStory />
+        <AboutFounder />
+        <AboutWhoWeAre />
         <AboutValues />
         <AboutTeam />
         <AboutGovernance />
