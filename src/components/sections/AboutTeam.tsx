@@ -46,17 +46,17 @@ export default async function AboutTeam() {
 
   return (
     <section className={styles.team} id="team">
-      {team.length > 0 && (
-        <div className={styles.block}>
-          <p className={styles.label}>The team</p>
-          <MemberGrid members={team} />
-        </div>
-      )}
-
       {board.length > 0 && (
         <div className={styles.block}>
           <p className={styles.label}>Board of trustees</p>
           <MemberGrid members={board} />
+        </div>
+      )}
+
+      {team.length > 0 && (
+        <div className={styles.block}>
+          <p className={styles.label}>The team</p>
+          <MemberGrid members={team} />
         </div>
       )}
 
