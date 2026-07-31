@@ -32,14 +32,6 @@
   margin-top: var(--sp-6);
 }
 
-.closing {
-  margin-top: var(--sp-8);
-  padding-top: var(--sp-8);
-  border-top: 1px solid rgba(28, 26, 23, 0.12);
-  font-weight: 400;
-  color: var(--charcoal);
-}
-
 @media (max-width: 768px) {
   .story { padding: var(--sp-12) var(--sp-3); }
   .inner { grid-template-columns: 1fr; gap: var(--sp-4); }
