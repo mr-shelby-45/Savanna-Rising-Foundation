@@ -2,6 +2,7 @@ import Nav from '@/components/ui/Nav'
 import Footer from '@/components/ui/Footer'
 import AboutHeader from '@/components/sections/AboutHeader'
 import AboutFounder from '@/components/sections/AboutFounder'
+import AboutWhoWeAre from '@/components/sections/AboutWhoWeAre'
 import AboutStory from '@/components/sections/AboutStory'
 import AboutValues from '@/components/sections/AboutValues'
 import AboutTeam from '@/components/sections/AboutTeam'
@@ -19,6 +20,7 @@ export default function AboutPage() {
       <main>
         <AboutHeader />
         <AboutFounder />
+        <AboutWhoWeAre />
         <AboutStory />
         <AboutValues />
         <AboutTeam />
