@@ -27,7 +27,7 @@ function MemberGrid({ members }: { members: TeamMember[] }) {
               />
             </div>
           ) : (
-            <div className={styles.photo} />
+            <div className={styles.photoPlaceholder} />
           )}
           <p className={styles.name}>{member.name}</p>
           <p className={styles.role}>{member.role}</p>
